@@ -1,430 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pediatric Cardiology Quiz - Chapter 1 (Part 1)</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        max-width: 850px;
-        margin: 0 auto;
-        padding: 20px;
-        color: #333;
-        background-color: #f4f7f6;
-    }
-    h1 {
-        text-align: center;
-        border-bottom: 2px solid #0056b3;
-        padding-bottom: 10px;
-        color: #0056b3;
-    }
-    #timer {
-        font-size: 1.3em;
-        font-weight: bold;
-        text-align: right;
-        color: #d9534f;
-        margin-bottom: 20px;
-        background: #fff;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .form-section {
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-bottom: 25px;
-    }
-    .question-block {
-        margin-bottom: 25px;
-        padding: 20px;
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    .question-text {
-        font-weight: bold;
-        font-size: 1.1em;
-        margin-bottom: 15px;
-    }
-    .image-placeholder {
-        background-color: #f9f9f9;
-        border: 1px solid #ccc;
-        padding: 15px;
-        text-align: center;
-        font-style: italic;
-        margin: 15px 0;
-        color: #555;
-        border-radius: 4px;
-    }
-    .options {
-        list-style-type: none;
-        padding: 0;
-    }
-    .options li {
-        margin-bottom: 10px;
-    }
-    .options label {
-        cursor: pointer;
-        display: block;
-        padding: 8px;
-        border-radius: 4px;
-        transition: background 0.2s;
-    }
-    .options label:hover {
-        background: #f0f8ff;
-    }
-    .submit-btn {
-        display: block;
-        width: 100%;
-        padding: 15px;
-        font-size: 1.2em;
-        font-weight: bold;
-        background-color: #0056b3;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 30px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: background 0.3s;
-    }
-    .submit-btn:hover {
-        background-color: #004494;
-    }
-    .submit-btn:disabled {
-        background-color: #999;
-        cursor: not-allowed;
-    }
-    #results {
-        display: none;
-        margin-top: 40px;
-        padding: 25px;
-        border: 2px solid #28a745;
-        background-color: #f9fff9;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .result-item {
-        margin-bottom: 25px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #ddd;
-    }
-    .result-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
-    .correct-answer-text {
-        color: #28a745;
-        font-weight: bold;
-        font-size: 1.05em;
-        margin-bottom: 5px;
-    }
-    .user-answer-text {
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-    .explanation {
-        margin-top: 15px;
-        padding: 15px;
-        background-color: #e9ecef;
-        border-left: 4px solid #0056b3;
-        border-radius: 0 4px 4px 0;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Structure and Replication Quiz</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --background: #f8f9fa;
+            --text: #333;
+            --correct: #27ae60;
+            --incorrect: #c0392b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 5px;
+        }
+
+        .instructor-info {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        .header-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #e8f4f8;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .student-section {
+            margin-bottom: 25px;
+        }
+
+        .student-section label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+
+        .student-section input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #fafafa;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .option-label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background: #ecf0f1;
+        }
+
+        .option-label input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            background: #1a252f;
+        }
+
+        #resultsArea {
+            display: none;
+            margin-top: 40px;
+            border-top: 2px dashed #bdc3c7;
+            padding-top: 30px;
+        }
+
+        .score-banner {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .score-good { background: #d4edda; color: #155724; }
+        .score-avg { background: #fff3cd; color: #856404; }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .results-table th, .results-table td {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+        }
+
+        .results-table th {
+            background: var(--primary);
+            color: white;
+        }
+
+        .status-correct { color: var(--correct); font-weight: bold; }
+        .status-incorrect { color: var(--incorrect); font-weight: bold; }
+
+        .submission-status {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+    </style>
 </head>
 <body>
 
-<h1>Pediatric Cardiology Quiz - Chapter 1 (Questions 1-25)</h1>
-<div id="timer">Time Remaining: <span id="timeDisplay">25:00</span></div>
+<div class="quiz-container">
+    <h1>DNA Structure & Replication</h1>
+    <div class="instructor-info">Instructor: Dr. DMAshraf1999</div>
 
-<form id="quizForm">
-    <div class="form-section">
-        <label for="studentName" style="font-weight: bold; font-size: 1.1em;">Student Name:</label><br>
-        <input type="text" id="studentName" name="Student Name" required style="margin-top: 10px; padding: 12px; width: 100%; max-width: 400px; font-size: 1em; border: 1px solid #ccc; border-radius: 4px;">
+    <div class="header-panel">
+        <div>Total Time: 30 Minutes</div>
+        <div id="timerDisplay">Time Remaining: 30:00</div>
     </div>
 
-    <div id="questionsContainer"></div>
+    <form id="quizForm">
+        <div class="student-section">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" name="Student Name" required placeholder="Enter your full name">
+        </div>
 
-    <button type="submit" class="submit-btn" id="submitBtn">Submit Quiz</button>
-</form>
+        <div id="questionsWrapper"></div>
 
-<div id="results">
-    <h2 style="color: #28a745; border-bottom: 2px solid #28a745; padding-bottom: 10px;">Quiz Results</h2>
-    <div id="resultsContent"></div>
+        <button type="submit" id="submitButton" class="submit-btn">Submit Quiz</button>
+        <div id="formStatus" class="submission-status"></div>
+    </form>
+
+    <div id="resultsArea">
+        <div id="scoreBanner" class="score-banner"></div>
+        <h3>Review Your Answers</h3>
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Q#</th>
+                    <th>Your Answer</th>
+                    <th>Correct Answer</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+        </table>
+    </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Quiz Data
     const quizData = [
-        {
-            question: "1. Left ventricular (LV) isovolumic contraction continues until what cardiac event occurs?",
-            options: ["A. Mitral valve opens", "B. Passive atrial filling", "C. Increased ventricular volume", "D. Aortic valve opens", "E. Aortic pressure greater than left ventricular"],
-            correct: "D. Aortic valve opens",
-            explanation: "At end diastole, LV filling is complete, and the mitral valve closes. There is a period of isovolumic contraction, after which the aortic valve opens secondary to a lower pressure in the aorta compared to the LV."
-        },
-        {
-            question: "2. Many metabolic factors are responsible for regulating coronary arterial blood flow. Which of the following metabolic factors is derived from the breakdown of high-energy phosphates?",
-            options: ["A. Prostaglandin", "B. Nitric oxide", "C. Endothelin-1", "D. Adenosine", "E. Vascular endothelial growth factor"],
-            correct: "D. Adenosine",
-            explanation: "Adenosine is produced from the breakdown of ATP, which cannot be regenerated at times of low oxygen tension. Therefore, at times of low oxygen tension, AMP is made and then further broken down into adenosine, which causes coronary artery vasodilation."
-        },
-        {
-            question: "3. The provided image was taken from which cardiac chamber?",
-            image: "[Image: Cardiac Tissue Showing Fibrous Continuity]",
-            options: ["A. Right atrium", "B. Right ventricle", "C. Left atrium", "D. Left ventricle", "E. Coronary Sinus"],
-            correct: "D. Left ventricle",
-            explanation: "Fibrous continuity of the semilunar and atrioventricular valves is a feature of a morphologic left ventricle. The aortic valve cusps can be seen in the top of the image with mitral valve and associated chordae seen at the bottom of the image. Conversely, the morphologic right ventricle exhibits muscular separation of the semilunar and atrioventricular valves."
-        },
-        {
-            question: "4. You are evaluating a toddler admitted to the pediatric service due to failure to thrive. There is concern that a vascular ring may be present. Upon completing an echocardiogram, you note that there is a right-sided arch. In combination with a right-sided aortic arch, which of the following would be concerning for a symptomatic vascular ring?",
-            options: ["A. Mirror image branching", "B. An aberrant right subclavian and diverticulum of Kommerell", "C. An aberrant left subclavian and left-sided patent ductus arteriosus", "D. Aberrant right subclavian with a left-sided diverticulum of Kommerell", "E. An aberrant left subclavian with a right-sided patent ductus arteriosus"],
-            correct: "C. An aberrant left subclavian and left-sided patent ductus arteriosus",
-            explanation: "A vascular ring occurs when there is abnormal regression of the embryologic aortic arches. In the setting of a right-sided aortic arch, the combination of an aberrant left subclavian artery and left-sided patent ductus arteriosus will lead to a vascular ring."
-        },
-        {
-            question: "5. You diagnose a neonate with polysplenia. Which of the following is most likely to be true regarding this patient?",
-            options: ["A. Limb-length abnormalities are present", "B. There are multiple spleens on both the left and right sides", "C. Multiple gallbladders are common", "D. The SVC is interrupted", "E. The IVC is interrupted, with azygos continuation to SVC"],
-            correct: "E. The IVC is interrupted, with azygos continuation to SVC",
-            explanation: "In polysplenia, the multiple spleens are typically located all on the same side of the vertebral column as the stomach. The IVC commonly is interrupted with azygos continuation to the SVC."
-        },
-        {
-            question: "6. In the mature cardiac myocytes, the majority of calcium involved in the binding of troponin C and thus the initiation of myocyte contraction is stored in which cellular space?",
-            options: ["A. Extracellular space", "B. T-tubule", "C. Mitochondria", "D. Lysosomes", "E. Sarcoplasmic reticulum"],
-            correct: "E. Sarcoplasmic reticulum",
-            explanation: "In mature myocytes, the sarcoplasmic reticulum stores the most important source of calcium involved in the initiation of myocyte contraction. Calcium enters the myocyte during the action potential through L-type voltage-gated calcium channels."
-        },
-        {
-            question: "7. The term straddling may be applied to which of the following?",
-            options: ["A. Semilunar valves", "B. Atrioventricular valves", "C. Both semilunar and atrioventricular valves", "D. Neither semilunar nor atrioventricular valves", "E. Valve of the fossa ovalis"],
-            correct: "B. Atrioventricular valves",
-            explanation: "Straddling is a feature of a valve's insertion into the ventricles, which is only a feature of atrioventricular valves because of the tensor apparatus (tendinous cords and papillary muscles) necessary for their function."
-        },
-        {
-            question: "8. A 15-year-old patient with hypoplastic left heart syndrome had a total cavopulmonary anastomosis (Fontan). In clinic, O2 saturations are much lower than anticipated. On imaging, there is no obstruction to flow at the level of the Glenn, Fontan, or Branch PAs. Which of the following is the most likely cause of the desaturations?",
-            options: ["A. Venovenous collateral circulation", "B. Aortopulmonary collateral circulation", "C. Venoarterial collateral circulation", "D. Aneurysmal arteriovenous malformation", "E. Coronary fistula"],
-            correct: "A. Venovenous collateral circulation",
-            explanation: "Fontan or stage III palliation includes connection of IVC flow to the pulmonary artery, allowing all pulmonary arterial flow to be passive. Venovenous collaterals lead to direct flow of deoxygenated systemic blood into the pulmonary venous circulation."
-        },
-        {
-            question: "9. A 12-year-old boy is diagnosed with mild aortic stenosis. You suspect that he has an abnormal aortic valve. Echocardiographic imaging demonstrates that his valve is similar to the following pathology image. Which of the following is the aortic cusp pattern in this patient?",
-            image: "[Image: Pathology imaging of an aortic valve]",
-            options: ["A. Bicuspid valve with fusion of the right and noncoronary cusps", "B. Quadricuspid valve with a cleft of the left coronary cusp", "C. Unicuspid valve with fusion of more than one cusp", "D. Bicuspid valve with fusion of the right and left cusps", "E. Bicuspid valve with fusion of the left and noncoronary cusps"],
-            correct: "D. Bicuspid valve with fusion of the right and left cusps",
-            explanation: "Of patients with a bicuspid aortic valve, by far the most common form is fusion of the right and left cusps (75%)."
-        },
-        {
-            question: "10. Which one of the following pairs is mismatched?",
-            options: ["A. Right coronary artery near tricuspid annulus", "B. Tricuspid valve insertions direct septal cordal", "C. Right ventricle crista terminalis", "D. Left ventricle fine apical trabeculations", "E. Right atrium limbus of fossa ovalis"],
-            correct: "C. Right ventricle crista terminalis",
-            explanation: "The crista terminalis is a right atrial structure, which represents the interface between the sinus portion of the atrium and the embryologic (trabeculated) atrium."
-        },
-        {
-            question: "11. You are assessing a patient with coarctation of the aorta. The coarctation is discrete with no aortic arch hypoplasia. Surgical repair is planned via a lateral thoracotomy instead of median sternotomy. Which of the following would most accurately determine arch sidedness prior to surgical intervention?",
-            options: ["A. Suprasternal notch echo view of the third branch of the aorta", "B. Subcostal echo view demonstrating the relationship of the spine to the aorta", "C. CT angiogram (CTA) demonstrating the branching pattern of the arch when compared to the branch pulmonary artery", "D. Suprasternal notch echo view demonstrating the relationship between the aortic arch and left pulmonary artery", "E. CT angiogram (CTA) demonstrating the relationship between the aortic arch and the bronchus"],
-            correct: "E. CT angiogram (CTA) demonstrating the relationship between the aortic arch and the bronchus",
-            explanation: "While arch sidedness can be determined by echocardiography, CTA allows for a more detailed assessment of the anatomy. Whether or not an aortic arch is right or left sided is determined by which bronchus the aortic arch travels over."
-        },
-        {
-            question: "12. Which of the following factors has the greatest impact on the pressure change across two points in a vessel?",
-            options: ["A. Vessel radius", "B. Blood viscosity", "C. Vessel length", "D. Maximum velocity of blood flow", "E. Hemoglobin concentration"],
-            correct: "A. Vessel radius",
-            explanation: "This question refers to the Poiseuille-Hagen relationship, where the resistance R between two points is a function of pressure and flow. This is ultimately described by the equation where the radius is raised to the fourth power."
-        },
-        {
-            question: "13. On gross inspection of a heart specimen, there is a defect adjacent to the interventricular component of the membranous septum. You note that there is aortic-tricuspid continuity. Which of the following is the most likely diagnosis?",
-            options: ["A. Perimembranous VSD with inlet extension", "B. Outlet muscular VSD", "C. Anterior muscular VSD", "D. Apical muscular VSD", "E. Doubly committed VSD"],
-            correct: "A. Perimembranous VSD with inlet extension",
-            explanation: "There are different names for ventricular septal defects based on their anatomic location. Central perimembranous VSDs can have inlet or outlet components. If there is tricuspid-aortic continuity, then the VSD is a perimembranous inlet VSD."
-        },
-        {
-            question: "14. The normal left aortic arch is primarily derived from which embryologic aortic arch?",
-            options: ["A. Fourth (IV) aortic arch", "B. First (1) aortic arch", "C. Second (II) aortic arch", "D. Third (III) aortic arch", "E. Sixth (VI) aortic arch"],
-            correct: "A. Fourth (IV) aortic arch",
-            explanation: "The majority of the aortic arch arises from the left fourth aortic arch, while the right fourth aortic arch gives rise to the proximal portion of the right subclavian artery."
-        },
-        {
-            question: "15. Embryologically, the ductus arteriosus and the left pulmonary artery arise from the:",
-            options: ["A. Left fourth (IV) aortic arch", "B. Left sixth (VI) and fourth (IV) aortic arches, respectively", "C. Left fourth (IV) and sixth (VI) aortic arches, respectively", "D. Left sixth (VI) aortic arch", "E. Right fifth (V) arch"],
-            correct: "D. Left sixth (VI) aortic arch",
-            explanation: "The pulmonary arteries and ductus arteriosus arise from the left sixth aortic arch."
-        },
-        {
-            question: "16. You diagnose a 5-day-old female infant with tetralogy of Fallot. Of the following defects, which is most likely to be seen concurrently on echocardiogram?",
-            options: ["A. Right aortic arch", "B. Aortic stenosis", "C. Atrial septal defect or patent foramen ovale", "D. Coarctation of the aorta", "E. Mitral valve prolapse"],
-            correct: "C. Atrial septal defect or patent foramen ovale",
-            explanation: "An atrial septal defect or a patent foramen ovale is present in over 80% of patients with tetralogy of Fallot."
-        },
-        {
-            question: "17. In contrast to a left-sided aortic arch, a right-sided aortic arch travels over the:",
-            options: ["A. Left atrium", "B. Right pulmonary artery", "C. Right bronchus", "D. Left pulmonary artery", "E. Left bronchus"],
-            correct: "C. Right bronchus",
-            explanation: "The laterality of the aortic arch is determined by the bronchus it travels over. Both left and right aortic arches travel over the right pulmonary artery. A left aortic arch will travel over the left bronchus and a right aortic arch over a right bronchus."
-        },
-        {
-            question: "18. A 4-year-old patient is postoperative day 2 from surgical repair of a moderate to large-sized secundum atrial septal defect. There is a distinct high-frequency scratching sound heard throughout the cardiac cycle and diffuse ST elevation on EKG. Which of the following structures is responsible for these findings?",
-            options: ["A. Parietal pleura", "B. Pericardial reflection", "C. Epicardium", "D. Myocardium", "E. Visceral pericardium"],
-            correct: "E. Visceral pericardium",
-            explanation: "Postoperative atrial septal defect patients are at high risk of developing a friction rub (heard throughout the cardiac cycle). This is secondary to fibrinous pericarditis where fibrin is replaced by fibrovascular granulation tissue. The visceral pericardium (epicardium) covers the heart."
-        },
-        {
-            question: "19. In the patient mentioned in question 18, the fibrinous pericarditis goes untreated. Several months later the patient returns with difficulty breathing, lower extremity edema, and hepatomegaly. What is the underlying physiology leading to this clinical presentation?",
-            options: ["A. Decreased systolic function due to fibrous deposition within the myocardium", "B. Decreased diastolic function due to excessive strain", "C. Increased afterload secondary to reduced stroke volume", "D. Decreased diastolic function due to constriction", "E. Increased afterload secondary to restriction"],
-            correct: "D. Decreased diastolic function due to constriction",
-            explanation: "The parietal pericardium is a strong, flask-shaped sac that surrounds the heart. This sac limits diastolic dimensions. In the setting of chronic pericarditis, there can be further stiffening of the pericardium leading to constriction and elevated ventricular end diastolic pressures."
-        },
-        {
-            question: "20. A newborn female infant presents with cyanosis. The following echocardiogram is obtained. In patients with this anatomy, which of the following is the most common coronary arterial abnormality?",
-            image: "[Image: Echocardiogram of d-transposition of the great arteries]",
-            options: ["A. Intramural left coronary", "B. Left anterior descending from the RCA", "C. Single right coronary artery", "D. Single left coronary artery", "E. Left circumflex from the RCA"],
-            correct: "E. Left circumflex from the RCA",
-            explanation: "The echocardiographic image represents a patient with d-transposition of the great arteries. Note the immediate posterior course of the great vessel arising from the left ventricle. Approximately 16% of patients will have an anomalous circumflex coronary artery arising from the right coronary."
-        },
-        {
-            question: "21. How does atrial natriuretic peptide (ANP) work on the kidney?",
-            options: ["A. Decreases tubular resorption of sodium", "B. Activates vasopressin receptors", "C. Inhibits ion exchange in the ascending loop of Henle", "D. Inhibition of sodium resorption in the proximal tubule", "E. Dilation of the efferent arteriole"],
-            correct: "A. Decreases tubular resorption of sodium",
-            explanation: "ANP is released in response to stretch from either atrium. ANP works on the kidney by dilating the afferent arteriole and constricting the efferent arteriole, effectively increasing GFR. It also works on the distal tubules to decrease sodium resorption."
-        },
-        {
-            question: "22. In a normal adolescent heart, the average ratio of ventricular septal thickness to left ventricular free wall thickness is:",
-            options: ["A. 1.1", "B. 2.9", "C. 1.9", "D. 0.6", "E. 2.4"],
-            correct: "A. 1.1",
-            explanation: "In normal hearts in the first two decades of life, the thickness of the ventricular septum and left free wall are similar (mean=1.1 range: 0.8 to 1.4)."
-        },
-        {
-            question: "23. Cardiac situs is determined by position of which structure?",
-            options: ["A. Cardiac apex", "B. Left atrium", "C. Left ventricle", "D. Right atrium", "E. Right ventricle"],
-            correct: "D. Right atrium",
-            explanation: "The pathologic definition of cardiac sidedness (situs) is the position of the right atrium."
-        },
-        {
-            question: "24. A 3-year-old boy with a history of a ventricular septal defect (VSD) presents to your office for follow-up. On examination, you hear a diastolic murmur at the apex. Echocardiography is performed. Prolapse of which aortic cusp is most likely causing the diastolic murmur?",
-            image: "[Image: Echocardiography of Aortic Valve]",
-            options: ["A. Left", "B. Anterior", "C. Septal", "D. Right", "E. Noncoronary"],
-            correct: "D. Right",
-            explanation: "The subarterial type of VSD (also called supracristal or infundibular) comprises 5% of VSDs at autopsy. Due to the location of the VSD, there is deficiency of the support structure below the aortic valve, with subsequent herniation of the right coronary leaflet through the defect."
-        },
-        {
-            question: "25. You diagnose a neonate with asplenia. Which of the following is most likely to be present in this patient?",
-            options: ["A. The liver is midline with two mirror-image left lobes", "B. Descending aorta and IVC on the same side of vertebral column", "C. The biliary tree is patent with multiple gallbladders", "D. Stomach position is fixed to the right side", "E. Normal rotation of the bowels"],
-            correct: "B. Descending aorta and IVC on the same side of vertebral column",
-            explanation: "In most asplenia patients, the descending aorta and IVC will travel on the same side of the vertebral column. The liver is most commonly midline with two mirror-image right lobes."
-        }
+        { q: "Which scientists were primarily responsible for developing the model of DNA structure in the 1950s?", a: "B", options: ["Rosalind Franklin and Maurice Wilkins", "James Watson and Francis Crick", "Gregor Mendel and Charles Darwin", "Louis Pasteur and Robert Koch"] },
+        { q: "What are the three basic components that make up a DNA nucleotide?", a: "B", options: ["Glucose, phosphate, and a nitrogenous base", "Deoxyribose sugar, phosphate, and a nitrogenous base", "Ribose sugar, sulfate, and an amino acid", "Deoxyribose sugar, amino acid, and a lipid"] },
+        { q: "Which nitrogenous bases are classified as purines?", a: "B", options: ["Cytosine and Thymine", "Adenine and Guanine", "Adenine and Thymine", "Guanine and Cytosine"] },
+        { q: "Which nitrogenous bases are classified as pyrimidines?", a: "C", options: ["Adenine and Guanine", "Cytosine and Guanine", "Cytosine and Thymine", "Adenine and Thymine"] },
+        { q: "What is the name of the sugar found in DNA?", a: "C", options: ["Ribose", "Glucose", "Deoxyribose", "Fructose"] },
+        { q: "In the DNA double helix, the 'rungs' of the ladder are held together by which type of bond?", a: "C", options: ["Strong covalent bonds", "Ionic bonds", "Weak hydrogen bonds", "Metallic bonds"] },
+        { q: "How many hydrogen bonds form between Cytosine and Guanine?", a: "C", options: ["1", "2", "3", "4"] },
+        { q: "How many hydrogen bonds form between Adenine and Thymine?", a: "B", options: ["1", "2", "3", "4"] },
+        { q: "Which term describes the orientation of the two DNA strands running in opposite directions?", a: "B", options: ["Parallel", "Antiparallel", "Perpendicular", "Symmetrical"] },
+        { q: "What is the structural shape of a DNA molecule?", a: "B", options: ["A straight staircase", "A twisted ladder (Double Helix)", "A circular chain", "A flat ribbon"] },
+        { q: "Which statement regarding the DNA of prokaryotes is correct?", a: "B", options: ["It is organized into linear chromosomes.", "It is circular in shape.", "It is not made of nucleotides.", "It is only found inside a nucleus."] },
+        { q: "DNA is wound around proteins called ________ to fit inside the nucleus.", a: "B", options: ["Enzymes", "Histones", "Ribosomes", "Lipids"] },
+        { q: "What chemical property allows DNA to bind tightly to histone proteins?", a: "B", options: ["DNA is positively charged and histones are neutral.", "Positively charged amino acids in histones attract the negatively charged DNA.", "Both DNA and histones are hydrophobic.", "They are joined by DNA ligase during packaging."] },
+        { q: "A section of DNA that carries the information for a particular polypeptide is known as a:", a: "B", options: ["Nucleotide", "Gene", "Chromatid", "Centromere"] },
+        { q: "What is the primary function of the sequence of the nitrogenous bases in DNA?", a: "B", options: ["To provide structural support to the sugar-phosphate backbone.", "To act as a code that carries information for making proteins.", "To prevent the DNA from unwinding during cell division.", "To catalyze chemical reactions within the cytoplasm."] },
+        { q: "What is the first step of DNA replication?", a: "B", options: ["The DNA polymerase adds new nucleotides.", "The double helix unwinds and 'unzips.'", "DNA ligase joins fragments together.", "Sister chromatids separate at the centromere."] },
+        { q: "Which enzyme is responsible for untwisting the double helix and separating the parental strands?", a: "C", options: ["Primase", "Topoisomerase", "Helicase", "DNA Ligase"] },
+        { q: "Which enzyme relieves the strain ahead of the replication fork by breaking and rejoining DNA strands?", a: "D", options: ["Helicase", "DNA Polymerase", "Primase", "Topoisomerase"] },
+        { q: "What is the function of the enzyme Primase in DNA replication?", a: "B", options: ["It joins the sugar-phosphate backbones.", "It synthesizes a short RNA chain called a primer.", "It proofreads the DNA for mistakes.", "It breaks the hydrogen bonds between bases."] },
+        { q: "Which enzyme joins the sugar-phosphate backbones of DNA fragments on the lagging strand?", a: "B", options: ["DNA Polymerase", "DNA Ligase", "Helicase", "RNA Polymerase"] },
+        { q: "If a double-stranded DNA molecule is found to consist of 15% Guanine, what is the expected percentage of Thymine?", a: "C", options: ["15%", "30%", "35%", "70%"] },
+        { q: "Which of the following would be the most immediate consequence if Topoisomerase became non-functional?", a: "B", options: ["The DNA strands would fail to separate at the origin.", "The DNA would become overwound and eventually break due to strain.", "RNA primers would not be synthesized.", "The sugar-phosphate backbone would fail to form."] },
+        { q: "How does the cell initiate a new DNA strand if DNA polymerase requires a pre-existing 3' end?", a: "B", options: ["Helicase provides a temporary 3' group.", "Primase synthesizes a short RNA sequence to provide a starting point.", "DNA Ligase connects free-floating bases.", "The DNA molecule is naturally broken to expose an end."] },
+        { q: "Why is the 'semi-conservative' model of replication advantageous?", a: "B", options: ["It allows the cell to use half as much energy.", "It ensures each daughter molecule contains one original parental strand as a template.", "It prevents the double helix from ever fully unwinding.", "It allows leading and lagging strands to move in the same direction."] },
+        { q: "Why is the DNA backbone held by covalent bonds while the bases are held by hydrogen bonds?", a: "B", options: ["To allow DNA to be broken down easily for energy.", "To protect the genetic code while allowing the strands to be 'unzipped' easily.", "To prevent ultraviolet radiation from damaging the sequence.", "To allow DNA to fold into nucleosomes without breaking."] },
+        { q: "If a chemical inhibitor prevented the action of DNA Ligase, what would be most significantly disrupted?", a: "C", options: ["The unwinding of the parental DNA.", "The synthesis of the leading strand.", "The joining of DNA segments on the lagging strand.", "The proofreading of mismatched bases."] },
+        { q: "What structural arrangement is responsible for the first level of DNA compaction in eukaryotes?", a: "B", options: ["The formation of a circular chromosome.", "The winding of DNA around a core of histone proteins.", "The attachment of DNA to the centromere.", "The pairing of purines with pyrimidines."] },
+        { q: "What is the most likely outcome if DNA polymerase loses its ability to proofread?", a: "C", options: ["Replication will stop entirely.", "The rate of synthesis will double.", "The frequency of permanent genetic mutations will increase.", "The DNA will become circular."] },
+        { q: "Why must the lagging strand be synthesized in segments?", a: "B", options: ["There is not enough DNA polymerase available.", "DNA polymerase can only add nucleotides in the 5' to 3' direction.", "The lagging strand contains Uracil instead of Thymine.", "Helicase only unwinds the leading strand template."] },
+        { q: "Why is a chromosome not visible under a light microscope during interphase?", a: "B", options: ["The DNA has been degraded by enzymes.", "The DNA is in a less condensed, chromatin fiber state.", "The DNA has moved into the cytoplasm.", "The histone proteins have been removed."] }
     ];
 
-    const questionsContainer = document.getElementById('questionsContainer');
-
+    // Render Questions
+    const wrapper = document.getElementById('questionsWrapper');
     quizData.forEach((item, index) => {
-        let questionHTML = `
-            <div class="question-block">
-                <div class="question-text">${item.question}</div>
-                ${item.image ? `<div class="image-placeholder">${item.image}</div>` : ''}
-                <ul class="options">
-        `;
+        const div = document.createElement('div');
+        div.className = 'question-block';
         
-        item.options.forEach((opt, optIndex) => {
-            const isRequired = optIndex === 0 ? "required" : "";
-            questionHTML += `
-                <li>
-                    <label>
-                        <input type="radio" name="q${index + 1}" value="${opt}" ${isRequired}> 
-                        ${opt}
-                    </label>
-                </li>
+        let optionsHtml = '';
+        const letters = ['A', 'B', 'C', 'D'];
+        
+        item.options.forEach((opt, i) => {
+            optionsHtml += `
+                <label class="option-label">
+                    <input type="radio" name="q${index}" value="${letters[i]}" required>
+                    ${letters[i]}) ${opt}
+                </label>
             `;
         });
 
-        questionHTML += `
-                </ul>
-            </div>
+        div.innerHTML = `
+            <div class="question-text">${index + 1}. ${item.q}</div>
+            ${optionsHtml}
         `;
-        questionsContainer.innerHTML += questionHTML;
+        wrapper.appendChild(div);
     });
 
-    let totalTime = quizData.length * 60; 
-    const timeDisplay = document.getElementById('timeDisplay');
+    // Timer Logic (30 Minutes)
+    let totalSeconds = 30 * 60;
+    const timerDisplay = document.getElementById('timerDisplay');
     
-    const timerInterval = setInterval(function() {
-        if (totalTime <= 0) {
-            clearInterval(timerInterval);
-            timeDisplay.textContent = "00:00";
-            document.getElementById('submitBtn').click();
+    const timer = setInterval(() => {
+        if (totalSeconds <= 0) {
+            clearInterval(timer);
+            timerDisplay.textContent = "Time's Up!";
+            document.getElementById('quizForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
         } else {
-            let minutes = Math.floor(totalTime / 60);
-            let seconds = totalTime % 60;
-            timeDisplay.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-            totalTime--;
+            let m = Math.floor(totalSeconds / 60);
+            let s = totalSeconds % 60;
+            timerDisplay.textContent = `Time Remaining: ${m}:${s < 10 ? '0' : ''}${s}`;
+            totalSeconds--;
         }
     }, 1000);
 
+    // Form Submission & Evaluation
     const form = document.getElementById('quizForm');
-    const resultsContainer = document.getElementById('results');
-    const resultsContent = document.getElementById('resultsContent');
-
+    
     form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        clearInterval(timerInterval);
+        e.preventDefault(); // Prevents page reload so answers don't disappear
+        clearInterval(timer); // Stop timer
+
+        let score = 0;
+        let detailsLog = "";
+        const resultsBody = document.getElementById('resultsBody');
+        resultsBody.innerHTML = "";
+
+        // Grade the quiz
+        quizData.forEach((item, index) => {
+            const selected = form.querySelector(`input[name="q${index}"]:checked`);
+            const userAnswer = selected ? selected.value : "No Answer";
+            const isCorrect = (userAnswer === item.a);
+            
+            if (isCorrect) score++;
+
+            // Build detailed log for email
+            detailsLog += `Q${index + 1}: Student answered ${userAnswer} (Correct: ${item.a})\n`;
+
+            // Build Results Table Row
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td class="${isCorrect ? 'status-correct' : 'status-incorrect'}">${userAnswer}</td>
+                <td class="status-correct">${item.a}</td>
+            `;
+            resultsBody.appendChild(row);
+        });
+
+        // Display Results Banner
+        const scoreBanner = document.getElementById('scoreBanner');
+        scoreBanner.textContent = `Final Score: ${score} / ${quizData.length}`;
+        scoreBanner.className = (score > 15) ? 'score-banner score-good' : 'score-banner score-avg';
         
-        const formData = new FormData(form);
-        const submitBtn = document.getElementById('submitBtn');
-        submitBtn.textContent = "Submitting securely...";
-        submitBtn.disabled = true;
+        document.getElementById('resultsArea').style.display = 'block';
+        document.getElementById('submitButton').style.display = 'none';
+
+        // Prepare Formspree Data
+        const formData = new FormData();
+        formData.append('Student Name', document.getElementById('studentName').value);
+        formData.append('Final Score', `${score} out of ${quizData.length}`);
+        formData.append('Detailed Responses', detailsLog);
+        formData.append('_subject', 'New DNA Quiz Submission');
+
+        // Send to Formspree silently via Fetch
+        const statusText = document.getElementById('formStatus');
+        statusText.textContent = "Submitting results to instructor...";
 
         fetch('https://formspree.io/f/meolwogo', {
             method: 'POST',
             body: formData,
             headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-            if(response.ok) {
-                displayResults(formData);
-                submitBtn.style.display = 'none';
+        }).then(response => {
+            if (response.ok) {
+                statusText.textContent = "Results successfully sent to instructor.";
+                statusText.style.color = "#27ae60";
             } else {
-                alert("There was an error submitting your results to the system.");
-                submitBtn.textContent = "Submit Quiz";
-                submitBtn.disabled = false;
+                statusText.textContent = "Submission failed. Please check your network.";
+                statusText.style.color = "#c0392b";
             }
-        })
-        .catch(error => {
-            alert("Network error. Please try again.");
-            submitBtn.textContent = "Submit Quiz";
-            submitBtn.disabled = false;
+        }).catch(error => {
+            statusText.textContent = "Error sending results.";
+            statusText.style.color = "#c0392b";
         });
     });
-
-    function displayResults(formData) {
-        let finalHtml = `<p style="font-size:1.2em; margin-bottom: 20px;"><strong>Student Name:</strong> ${formData.get('Student Name')}</p>`;
-        
-        quizData.forEach((item, index) => {
-            const questionKey = 'q' + (index + 1);
-            const userAnswer = formData.get(questionKey) || 'No Answer Provided';
-            const correctAnswer = item.correct;
-            const explanation = item.explanation;
-            
-            const isCorrect = (userAnswer === correctAnswer);
-            const answerStatusColor = isCorrect ? '#28a745' : '#d9534f';
-            
-            finalHtml += `
-                <div class="result-item">
-                    <p><strong>Question ${index + 1}</strong></p>
-                    <p class="correct-answer-text">Correct Answer: ${correctAnswer}</p>
-                    <div class="explanation"><strong>Explanation:</strong> ${explanation}</div>
-                    <p class="user-answer-text" style="color: ${answerStatusColor}; margin-top: 15px;">Your Answer: ${userAnswer} ${isCorrect ? '✓' : '✗'}</p>
-                </div>
-            `;
-        });
-        
-        resultsContent.innerHTML = finalHtml;
-        resultsContainer.style.display = 'block';
-        
-        resultsContainer.scrollIntoView({ behavior: 'smooth' });
-    }
 });
 </script>
 
