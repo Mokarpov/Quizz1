@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pediatric Cardiology Quiz - Chapter 1 (Part 1)</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #333;
+        background-color: #f4f7f6;
+    }
+    h1 {
+        text-align: center;
+        border-bottom: 2px solid #0056b3;
+        padding-bottom: 10px;
+        color: #0056b3;
+    }
+    #timer {
+        font-size: 1.3em;
+        font-weight: bold;
+        text-align: right;
+        color: #d9534f;
+        margin-bottom: 20px;
+        background: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .form-section {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+    }
+    .question-block {
+        margin-bottom: 25px;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .question-text {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    .image-placeholder {
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        padding: 15px;
+        text-align: center;
+        font-style: italic;
+        margin: 15px 0;
+        color: #555;
+        border-radius: 4px;
+    }
+    .options {
+        list-style-type: none;
+        padding: 0;
+    }
+    .options li {
+        margin-bottom: 10px;
+    }
+    .options label {
+        cursor: pointer;
+        display: block;
+        padding: 8px;
+        border-radius: 4px;
+        transition: background 0.2s;
+    }
+    .options label:hover {
+        background: #f0f8ff;
+    }
+    .submit-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2em;
+        font-weight: bold;
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: background 0.3s;
+    }
+    .submit-btn:hover {
+        background-color: #004494;
+    }
+    .submit-btn:disabled {
+        background-color: #999;
+        cursor: not-allowed;
+    }
+    #results {
+        display: none;
+        margin-top: 40px;
+        padding: 25px;
+        border: 2px solid #28a745;
+        background-color: #f9fff9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .result-item {
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .result-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .correct-answer-text {
+        color: #28a745;
+        font-weight: bold;
+        font-size: 1.05em;
+        margin-bottom: 5px;
+    }
+    .user-answer-text {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .explanation {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #e9ecef;
+        border-left: 4px solid #0056b3;
+        border-radius: 0 4px 4px 0;
+    }
+</style>
+</head>
+<body>
+
+<h1>Pediatric Cardiology Quiz - Chapter 1 (Questions 1-25)</h1>
+<div id="timer">Time Remaining: <span id="timeDisplay">25:00</span></div>
+
+<form id="quizForm">
+    <div class="form-section">
+        <label for="studentName" style="font-weight: bold; font-size: 1.1em;">Student Name:</label><br>
+        <input type="text" id="studentName" name="Student Name" required style="margin-top: 10px; padding: 12px; width: 100%; max-width: 400px; font-size: 1em; border: 1px solid #ccc; border-radius: 4px;">
+    </div>
+
+    <div id="questionsContainer"></div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Quiz</button>
+</form>
+
+<div id="results">
+    <h2 style="color: #28a745; border-bottom: 2px solid #28a745; padding-bottom: 10px;">Quiz Results</h2>
+    <div id="resultsContent"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const quizData = [
+        {
+            question: "1. Left ventricular (LV) isovolumic contraction continues until what cardiac event occurs?",
+            options: ["A. Mitral valve opens", "B. Passive atrial filling", "C. Increased ventricular volume", "D. Aortic valve opens", "E. Aortic pressure greater than left ventricular"],
+            correct: "D. Aortic valve opens",
+            explanation: "At end diastole, LV filling is complete, and the mitral valve closes. There is a period of isovolumic contraction, after which the aortic valve opens secondary to a lower pressure in the aorta compared to the LV."
+        },
+        {
+            question: "2. Many metabolic factors are responsible for regulating coronary arterial blood flow. Which of the following metabolic factors is derived from the breakdown of high-energy phosphates?",
+            options: ["A. Prostaglandin", "B. Nitric oxide", "C. Endothelin-1", "D. Adenosine", "E. Vascular endothelial growth factor"],
+            correct: "D. Adenosine",
+            explanation: "Adenosine is produced from the breakdown of ATP, which cannot be regenerated at times of low oxygen tension. Therefore, at times of low oxygen tension, AMP is made and then further broken down into adenosine, which causes coronary artery vasodilation."
+        },
+        {
+            question: "3. The provided image was taken from which cardiac chamber?",
+            image: "[Image: Cardiac Tissue Showing Fibrous Continuity]",
+            options: ["A. Right atrium", "B. Right ventricle", "C. Left atrium", "D. Left ventricle", "E. Coronary Sinus"],
+            correct: "D. Left ventricle",
+            explanation: "Fibrous continuity of the semilunar and atrioventricular valves is a feature of a morphologic left ventricle. The aortic valve cusps can be seen in the top of the image with mitral valve and associated chordae seen at the bottom of the image. Conversely, the morphologic right ventricle exhibits muscular separation of the semilunar and atrioventricular valves."
+        },
+        {
+            question: "4. You are evaluating a toddler admitted to the pediatric service due to failure to thrive. There is concern that a vascular ring may be present. Upon completing an echocardiogram, you note that there is a right-sided arch. In combination with a right-sided aortic arch, which of the following would be concerning for a symptomatic vascular ring?",
+            options: ["A. Mirror image branching", "B. An aberrant right subclavian and diverticulum of Kommerell", "C. An aberrant left subclavian and left-sided patent ductus arteriosus", "D. Aberrant right subclavian with a left-sided diverticulum of Kommerell", "E. An aberrant left subclavian with a right-sided patent ductus arteriosus"],
+            correct: "C. An aberrant left subclavian and left-sided patent ductus arteriosus",
+            explanation: "A vascular ring occurs when there is abnormal regression of the embryologic aortic arches. In the setting of a right-sided aortic arch, the combination of an aberrant left subclavian artery and left-sided patent ductus arteriosus will lead to a vascular ring."
+        },
+        {
+            question: "5. You diagnose a neonate with polysplenia. Which of the following is most likely to be true regarding this patient?",
+            options: ["A. Limb-length abnormalities are present", "B. There are multiple spleens on both the left and right sides", "C. Multiple gallbladders are common", "D. The SVC is interrupted", "E. The IVC is interrupted, with azygos continuation to SVC"],
+            correct: "E. The IVC is interrupted, with azygos continuation to SVC",
+            explanation: "In polysplenia, the multiple spleens are typically located all on the same side of the vertebral column as the stomach. The IVC commonly is interrupted with azygos continuation to the SVC."
+        },
+        {
+            question: "6. In the mature cardiac myocytes, the majority of calcium involved in the binding of troponin C and thus the initiation of myocyte contraction is stored in which cellular space?",
+            options: ["A. Extracellular space", "B. T-tubule", "C. Mitochondria", "D. Lysosomes", "E. Sarcoplasmic reticulum"],
+            correct: "E. Sarcoplasmic reticulum",
+            explanation: "In mature myocytes, the sarcoplasmic reticulum stores the most important source of calcium involved in the initiation of myocyte contraction. Calcium enters the myocyte during the action potential through L-type voltage-gated calcium channels."
+        },
+        {
+            question: "7. The term straddling may be applied to which of the following?",
+            options: ["A. Semilunar valves", "B. Atrioventricular valves", "C. Both semilunar and atrioventricular valves", "D. Neither semilunar nor atrioventricular valves", "E. Valve of the fossa ovalis"],
+            correct: "B. Atrioventricular valves",
+            explanation: "Straddling is a feature of a valve's insertion into the ventricles, which is only a feature of atrioventricular valves because of the tensor apparatus (tendinous cords and papillary muscles) necessary for their function."
+        },
+        {
+            question: "8. A 15-year-old patient with hypoplastic left heart syndrome had a total cavopulmonary anastomosis (Fontan). In clinic, O2 saturations are much lower than anticipated. On imaging, there is no obstruction to flow at the level of the Glenn, Fontan, or Branch PAs. Which of the following is the most likely cause of the desaturations?",
+            options: ["A. Venovenous collateral circulation", "B. Aortopulmonary collateral circulation", "C. Venoarterial collateral circulation", "D. Aneurysmal arteriovenous malformation", "E. Coronary fistula"],
+            correct: "A. Venovenous collateral circulation",
+            explanation: "Fontan or stage III palliation includes connection of IVC flow to the pulmonary artery, allowing all pulmonary arterial flow to be passive. Venovenous collaterals lead to direct flow of deoxygenated systemic blood into the pulmonary venous circulation."
+        },
+        {
+            question: "9. A 12-year-old boy is diagnosed with mild aortic stenosis. You suspect that he has an abnormal aortic valve. Echocardiographic imaging demonstrates that his valve is similar to the following pathology image. Which of the following is the aortic cusp pattern in this patient?",
+            image: "[Image: Pathology imaging of an aortic valve]",
+            options: ["A. Bicuspid valve with fusion of the right and noncoronary cusps", "B. Quadricuspid valve with a cleft of the left coronary cusp", "C. Unicuspid valve with fusion of more than one cusp", "D. Bicuspid valve with fusion of the right and left cusps", "E. Bicuspid valve with fusion of the left and noncoronary cusps"],
+            correct: "D. Bicuspid valve with fusion of the right and left cusps",
+            explanation: "Of patients with a bicuspid aortic valve, by far the most common form is fusion of the right and left cusps (75%)."
+        },
+        {
+            question: "10. Which one of the following pairs is mismatched?",
+            options: ["A. Right coronary artery near tricuspid annulus", "B. Tricuspid valve insertions direct septal cordal", "C. Right ventricle crista terminalis", "D. Left ventricle fine apical trabeculations", "E. Right atrium limbus of fossa ovalis"],
+            correct: "C. Right ventricle crista terminalis",
+            explanation: "The crista terminalis is a right atrial structure, which represents the interface between the sinus portion of the atrium and the embryologic (trabeculated) atrium."
+        },
+        {
+            question: "11. You are assessing a patient with coarctation of the aorta. The coarctation is discrete with no aortic arch hypoplasia. Surgical repair is planned via a lateral thoracotomy instead of median sternotomy. Which of the following would most accurately determine arch sidedness prior to surgical intervention?",
+            options: ["A. Suprasternal notch echo view of the third branch of the aorta", "B. Subcostal echo view demonstrating the relationship of the spine to the aorta", "C. CT angiogram (CTA) demonstrating the branching pattern of the arch when compared to the branch pulmonary artery", "D. Suprasternal notch echo view demonstrating the relationship between the aortic arch and left pulmonary artery", "E. CT angiogram (CTA) demonstrating the relationship between the aortic arch and the bronchus"],
+            correct: "E. CT angiogram (CTA) demonstrating the relationship between the aortic arch and the bronchus",
+            explanation: "While arch sidedness can be determined by echocardiography, CTA allows for a more detailed assessment of the anatomy. Whether or not an aortic arch is right or left sided is determined by which bronchus the aortic arch travels over."
+        },
+        {
+            question: "12. Which of the following factors has the greatest impact on the pressure change across two points in a vessel?",
+            options: ["A. Vessel radius", "B. Blood viscosity", "C. Vessel length", "D. Maximum velocity of blood flow", "E. Hemoglobin concentration"],
+            correct: "A. Vessel radius",
+            explanation: "This question refers to the Poiseuille-Hagen relationship, where the resistance R between two points is a function of pressure and flow. This is ultimately described by the equation where the radius is raised to the fourth power."
+        },
+        {
+            question: "13. On gross inspection of a heart specimen, there is a defect adjacent to the interventricular component of the membranous septum. You note that there is aortic-tricuspid continuity. Which of the following is the most likely diagnosis?",
+            options: ["A. Perimembranous VSD with inlet extension", "B. Outlet muscular VSD", "C. Anterior muscular VSD", "D. Apical muscular VSD", "E. Doubly committed VSD"],
+            correct: "A. Perimembranous VSD with inlet extension",
+            explanation: "There are different names for ventricular septal defects based on their anatomic location. Central perimembranous VSDs can have inlet or outlet components. If there is tricuspid-aortic continuity, then the VSD is a perimembranous inlet VSD."
+        },
+        {
+            question: "14. The normal left aortic arch is primarily derived from which embryologic aortic arch?",
+            options: ["A. Fourth (IV) aortic arch", "B. First (1) aortic arch", "C. Second (II) aortic arch", "D. Third (III) aortic arch", "E. Sixth (VI) aortic arch"],
+            correct: "A. Fourth (IV) aortic arch",
+            explanation: "The majority of the aortic arch arises from the left fourth aortic arch, while the right fourth aortic arch gives rise to the proximal portion of the right subclavian artery."
+        },
+        {
+            question: "15. Embryologically, the ductus arteriosus and the left pulmonary artery arise from the:",
+            options: ["A. Left fourth (IV) aortic arch", "B. Left sixth (VI) and fourth (IV) aortic arches, respectively", "C. Left fourth (IV) and sixth (VI) aortic arches, respectively", "D. Left sixth (VI) aortic arch", "E. Right fifth (V) arch"],
+            correct: "D. Left sixth (VI) aortic arch",
+            explanation: "The pulmonary arteries and ductus arteriosus arise from the left sixth aortic arch."
+        },
+        {
+            question: "16. You diagnose a 5-day-old female infant with tetralogy of Fallot. Of the following defects, which is most likely to be seen concurrently on echocardiogram?",
+            options: ["A. Right aortic arch", "B. Aortic stenosis", "C. Atrial septal defect or patent foramen ovale", "D. Coarctation of the aorta", "E. Mitral valve prolapse"],
+            correct: "C. Atrial septal defect or patent foramen ovale",
+            explanation: "An atrial septal defect or a patent foramen ovale is present in over 80% of patients with tetralogy of Fallot."
+        },
+        {
+            question: "17. In contrast to a left-sided aortic arch, a right-sided aortic arch travels over the:",
+            options: ["A. Left atrium", "B. Right pulmonary artery", "C. Right bronchus", "D. Left pulmonary artery", "E. Left bronchus"],
+            correct: "C. Right bronchus",
+            explanation: "The laterality of the aortic arch is determined by the bronchus it travels over. Both left and right aortic arches travel over the right pulmonary artery. A left aortic arch will travel over the left bronchus and a right aortic arch over a right bronchus."
+        },
+        {
+            question: "18. A 4-year-old patient is postoperative day 2 from surgical repair of a moderate to large-sized secundum atrial septal defect. There is a distinct high-frequency scratching sound heard throughout the cardiac cycle and diffuse ST elevation on EKG. Which of the following structures is responsible for these findings?",
+            options: ["A. Parietal pleura", "B. Pericardial reflection", "C. Epicardium", "D. Myocardium", "E. Visceral pericardium"],
+            correct: "E. Visceral pericardium",
+            explanation: "Postoperative atrial septal defect patients are at high risk of developing a friction rub (heard throughout the cardiac cycle). This is secondary to fibrinous pericarditis where fibrin is replaced by fibrovascular granulation tissue. The visceral pericardium (epicardium) covers the heart."
+        },
+        {
+            question: "19. In the patient mentioned in question 18, the fibrinous pericarditis goes untreated. Several months later the patient returns with difficulty breathing, lower extremity edema, and hepatomegaly. What is the underlying physiology leading to this clinical presentation?",
+            options: ["A. Decreased systolic function due to fibrous deposition within the myocardium", "B. Decreased diastolic function due to excessive strain", "C. Increased afterload secondary to reduced stroke volume", "D. Decreased diastolic function due to constriction", "E. Increased afterload secondary to restriction"],
+            correct: "D. Decreased diastolic function due to constriction",
+            explanation: "The parietal pericardium is a strong, flask-shaped sac that surrounds the heart. This sac limits diastolic dimensions. In the setting of chronic pericarditis, there can be further stiffening of the pericardium leading to constriction and elevated ventricular end diastolic pressures."
+        },
+        {
+            question: "20. A newborn female infant presents with cyanosis. The following echocardiogram is obtained. In patients with this anatomy, which of the following is the most common coronary arterial abnormality?",
+            image: "[Image: Echocardiogram of d-transposition of the great arteries]",
+            options: ["A. Intramural left coronary", "B. Left anterior descending from the RCA", "C. Single right coronary artery", "D. Single left coronary artery", "E. Left circumflex from the RCA"],
+            correct: "E. Left circumflex from the RCA",
+            explanation: "The echocardiographic image represents a patient with d-transposition of the great arteries. Note the immediate posterior course of the great vessel arising from the left ventricle. Approximately 16% of patients will have an anomalous circumflex coronary artery arising from the right coronary."
+        },
+        {
+            question: "21. How does atrial natriuretic peptide (ANP) work on the kidney?",
+            options: ["A. Decreases tubular resorption of sodium", "B. Activates vasopressin receptors", "C. Inhibits ion exchange in the ascending loop of Henle", "D. Inhibition of sodium resorption in the proximal tubule", "E. Dilation of the efferent arteriole"],
+            correct: "A. Decreases tubular resorption of sodium",
+            explanation: "ANP is released in response to stretch from either atrium. ANP works on the kidney by dilating the afferent arteriole and constricting the efferent arteriole, effectively increasing GFR. It also works on the distal tubules to decrease sodium resorption."
+        },
+        {
+            question: "22. In a normal adolescent heart, the average ratio of ventricular septal thickness to left ventricular free wall thickness is:",
+            options: ["A. 1.1", "B. 2.9", "C. 1.9", "D. 0.6", "E. 2.4"],
+            correct: "A. 1.1",
+            explanation: "In normal hearts in the first two decades of life, the thickness of the ventricular septum and left free wall are similar (mean=1.1 range: 0.8 to 1.4)."
+        },
+        {
+            question: "23. Cardiac situs is determined by position of which structure?",
+            options: ["A. Cardiac apex", "B. Left atrium", "C. Left ventricle", "D. Right atrium", "E. Right ventricle"],
+            correct: "D. Right atrium",
+            explanation: "The pathologic definition of cardiac sidedness (situs) is the position of the right atrium."
+        },
+        {
+            question: "24. A 3-year-old boy with a history of a ventricular septal defect (VSD) presents to your office for follow-up. On examination, you hear a diastolic murmur at the apex. Echocardiography is performed. Prolapse of which aortic cusp is most likely causing the diastolic murmur?",
+            image: "[Image: Echocardiography of Aortic Valve]",
+            options: ["A. Left", "B. Anterior", "C. Septal", "D. Right", "E. Noncoronary"],
+            correct: "D. Right",
+            explanation: "The subarterial type of VSD (also called supracristal or infundibular) comprises 5% of VSDs at autopsy. Due to the location of the VSD, there is deficiency of the support structure below the aortic valve, with subsequent herniation of the right coronary leaflet through the defect."
+        },
+        {
+            question: "25. You diagnose a neonate with asplenia. Which of the following is most likely to be present in this patient?",
+            options: ["A. The liver is midline with two mirror-image left lobes", "B. Descending aorta and IVC on the same side of vertebral column", "C. The biliary tree is patent with multiple gallbladders", "D. Stomach position is fixed to the right side", "E. Normal rotation of the bowels"],
+            correct: "B. Descending aorta and IVC on the same side of vertebral column",
+            explanation: "In most asplenia patients, the descending aorta and IVC will travel on the same side of the vertebral column. The liver is most commonly midline with two mirror-image right lobes."
+        }
+    ];
+
+    const questionsContainer = document.getElementById('questionsContainer');
+
+    quizData.forEach((item, index) => {
+        let questionHTML = `
+            <div class="question-block">
+                <div class="question-text">${item.question}</div>
+                ${item.image ? `<div class="image-placeholder">${item.image}</div>` : ''}
+                <ul class="options">
+        `;
+        
+        item.options.forEach((opt, optIndex) => {
+            const isRequired = optIndex === 0 ? "required" : "";
+            questionHTML += `
+                <li>
+                    <label>
+                        <input type="radio" name="q${index + 1}" value="${opt}" ${isRequired}> 
+                        ${opt}
+                    </label>
+                </li>
+            `;
+        });
+
+        questionHTML += `
+                </ul>
+            </div>
+        `;
+        questionsContainer.innerHTML += questionHTML;
+    });
+
+    let totalTime = quizData.length * 60; 
+    const timeDisplay = document.getElementById('timeDisplay');
+    
+    const timerInterval = setInterval(function() {
+        if (totalTime <= 0) {
+            clearInterval(timerInterval);
+            timeDisplay.textContent = "00:00";
+            document.getElementById('submitBtn').click();
+        } else {
+            let minutes = Math.floor(totalTime / 60);
+            let seconds = totalTime % 60;
+            timeDisplay.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+            totalTime--;
+        }
+    }, 1000);
+
+    const form = document.getElementById('quizForm');
+    const resultsContainer = document.getElementById('results');
+    const resultsContent = document.getElementById('resultsContent');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        clearInterval(timerInterval);
+        
+        const formData = new FormData(form);
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.textContent = "Submitting securely...";
+        submitBtn.disabled = true;
+
+        fetch('https://formspree.io/f/meolwogo', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if(response.ok) {
+                displayResults(formData);
+                submitBtn.style.display = 'none';
+            } else {
+                alert("There was an error submitting your results to the system.");
+                submitBtn.textContent = "Submit Quiz";
+                submitBtn.disabled = false;
+            }
+        })
+        .catch(error => {
+            alert("Network error. Please try again.");
+            submitBtn.textContent = "Submit Quiz";
+            submitBtn.disabled = false;
+        });
+    });
+
+    function displayResults(formData) {
+        let finalHtml = `<p style="font-size:1.2em; margin-bottom: 20px;"><strong>Student Name:</strong> ${formData.get('Student Name')}</p>`;
+        
+        quizData.forEach((item, index) => {
+            const questionKey = 'q' + (index + 1);
+            const userAnswer = formData.get(questionKey) || 'No Answer Provided';
+            const correctAnswer = item.correct;
+            const explanation = item.explanation;
+            
+            const isCorrect = (userAnswer === correctAnswer);
+            const answerStatusColor = isCorrect ? '#28a745' : '#d9534f';
+            
+            finalHtml += `
+                <div class="result-item">
+                    <p><strong>Question ${index + 1}</strong></p>
+                    <p class="correct-answer-text">Correct Answer: ${correctAnswer}</p>
+                    <div class="explanation"><strong>Explanation:</strong> ${explanation}</div>
+                    <p class="user-answer-text" style="color: ${answerStatusColor}; margin-top: 15px;">Your Answer: ${userAnswer} ${isCorrect ? '✓' : '✗'}</p>
+                </div>
+            `;
+        });
+        
+        resultsContent.innerHTML = finalHtml;
+        resultsContainer.style.display = 'block';
+        
+        resultsContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+</script>
+
+</body>
+</html>
